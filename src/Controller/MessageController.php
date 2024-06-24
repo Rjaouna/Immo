@@ -25,8 +25,9 @@ class MessageController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($message);
             $entityManager->flush();
-
-            return $this->redirectToRoute('app_message_index', [], Response::HTTP_SEE_OTHER);
+            // Ajout du message flash
+            $this->addFlash('success', 'Votre demande a été envoyé avec succès !');
+            return $this->redirectToRoute('app_home', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('message/new.html.twig', [

@@ -18,12 +18,12 @@
                     <div class="card-body">
                         <h3 class="card-title">{{ bien_immo.Titre }}</h3>
                         <p class="card-text">{{ bien_immo.Description|striptags|slice(0, 200) ~ (bien_immo.Description|length > 200 ? '...' : '') }}</p>
- <div class="card-footer">
-                        <small class="text-muted">Nombre de messages : {{ message_counts[bien_immo.id] ?? 0 }}</small>
-                    </div>
+
                         <a href="{{ path('app_bien_immo_show', {'id': bien_immo.id}) }}" class="btn btn-success w-100">Détail du projet</a>
                     </div>
-                   
+                    <div class="card-footer">
+                        <small class="text-muted">Ce bien a récu  : {{ message_counts[bien_immo.id] ?? 0 }} demande(s)</small>
+                    </div>
                 </div>
             </div>
         {% else %}
