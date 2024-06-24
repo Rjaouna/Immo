@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}BienImmo index{% endblock %}
+
+{% block body %}
+    <h1>Découvrez Nos Biens Immobiliers</h1>
+    <p>Explorez notre vaste sélection de propriétés qui répondent à tous vos besoins et envies. Trouvez le bien de vos rêves parmi nos offres exclusives.</p>
+
+    <div class="row row-cols-1 row-cols-md-4 g-4">
+        {% for bien_immo in bien_immos %}
+            <div class="col">
+                <div class="card h-100">
+                    {% if bien_immo.Photo %}
+                        <img src="{{ asset('images/bienimmo/' ~ bien_immo.Photo) }}" class="card-img-top" alt="...">
+                    {% else %}
+                        <img src="https://via.placeholder.com/300" class="card-img-top" alt="Placeholder">
+                    {% endif %}
+                    <div class="card-body">
+                        <h3 class="card-title">{{ bien_immo.Titre }}</h3>
+                        <p class="card-text">{{ bien_immo.Description|striptags|slice(0, 200) ~ (bien_immo.Description|length > 200 ? '...' : '') }}</p>
+ <div class="card-footer">
+                        <small class="text-muted">Nombre de messages : {{ message_counts[bien_immo.id] ?? 0 }}</small>
+                    </div>
+                        <a href="{{ path('app_bien_immo_show', {'id': bien_immo.id}) }}" class="btn btn-success w-100">Détail du projet</a>
+                    </div>
+                   
+                </div>
+            </div>
+        {% else %}
+            <p class="col">Aucun bien immobilier trouvé.</p>
+        {% endfor %}
+    </div>
+
+{% endblock %}

@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}BienImmo{% endblock %}
+
+{% block body %}
+    <h1>Projet {{ bien_immo.Titre }}</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                   {% if bien_immo.Photo %}
+                        <img src="{{ asset('images/bienimmo/' ~ bien_immo.Photo) }}" class="card-img-top img-fluid" height="150" >
+
+                    {% else %}
+                        <img src="https://via.placeholder.com/300" class="card-img-top" alt="Placeholder">
+                    {% endif %}
+            </tr>
+             <tr>
+                <th>Nom du projet</th>
+                <td>{{ bien_immo.Titre }}</td>
+            </tr>
+            <tr>
+                <th>Vidéo de présentation</th>
+
+                <td>
+                        <a href="{{ bien_immo.Youtube }}" class="btn btn-success">Projet {{ bien_immo.Titre }} en vidéo</a>
+                
+                </td>
+            </tr>
+            
+            <tr>
+                <th>Type</th>
+                <td>{{ bien_immo.Type }}</td>
+            </tr>
+            <tr>
+                <th>Prix</th>
+                <td>{{ bien_immo.Prix }} €</td>
+            </tr>
+            <tr>
+                <th>Ville</th>
+                <td>{{ bien_immo.Ville }}</td>
+            </tr>
+            <tr>
+                <th>Superficie</th>
+                <td>{{ bien_immo.Superficie }} m</td>
+            </tr>
+            <tr>
+                <th>Nombre de Pieces</th>
+                <td>{{ bien_immo.Pieces }}</td>
+            </tr>
+            <tr>
+                <th>Année de construction</th>
+                <td>{{ bien_immo.Annee ? bien_immo.Annee|date('Y-m-d') }}</td>
+            </tr>
+         <tr>
+                <th>Description </th>
+                <td>{{ bien_immo.Description|striptags }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a class="btn btn-primary w-100" href="{{ path('app_bien_immo_index') }}">Retour à la liste des projets</a>
+
+
+{% endblock %}
