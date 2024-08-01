@@ -1,4 +1,69 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
+    
+    <div class="card mb-3">
+        <div class="card-header bg-primary text-white">
+            Informations Personnelles
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    {{ form_row(form.Nom) }}
+                </div>
+                <div class="col-md-6">
+                    {{ form_row(form.Telephone) }}
+                </div>
+                <div class="col-md-6">
+                    {{ form_row(form.Email) }}
+                </div>
+                <div class="col-md-6">
+                    {{ form_row(form.Ville) }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card mb-3">
+        <div class="card-header bg-primary text-white">
+            Informations sur le Bien
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    {{ form_row(form.VilleAppartement) }}
+                </div>
+                <div class="col-md-6">
+                    {{ form_row(form.Superficie) }}
+                </div>
+                <div class="col-md-6">
+                    {{ form_row(form.Chambres) }}
+                </div>
+                <div class="col-md-6">
+                    {{ form_row(form.SalleBain) }}
+                </div>
+                <div class="col-md-12">
+                    {{ form_row(form.Balcon) }}
+                    {{ form_row(form.Terrasse) }}
+                    {{ form_row(form.Ascenseur) }}
+                    {{ form_row(form.Piscine) }}
+                    {{ form_row(form.Parking) }}
+                    {{ form_row(form.Garage) }}
+                </div>
+                <div class="col-md-6">
+                    {{ form_row(form.Prix) }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card mb-3">
+        <div class="card-header bg-primary text-white">
+            Message Supplémentaire
+        </div>
+        <div class="card-body">
+            {{ form_row(form.Message) }}
+        </div>
+    </div>
     <button class="btn btn-success btn-lg">{{ button_label|default('Envoyer ma demande') }}</button>
-{{ form_end(form) }}
+
+    
+    {{ form_end(form) }}
