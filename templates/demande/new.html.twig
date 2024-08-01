@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouvelle Demande{% endblock %}
+
+{% block body %}
+    <h1>Accompagenement</h1>
+    <p>Veuillez remplir le formulaire ci-dessous avec les informations demandées pour nous aider à mieux comprendre vos besoins en matière de logement. Si vous avez des détails supplémentaires à partager ou des questions, n'hésitez pas à les inclure dans le champ prévu à cet effet.
+</p>
+
+    {{ include('demande/_form.html.twig') }}
+
+{% endblock %}

@@ -11,10 +11,10 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-#[Route('/')]
+#[Route('/bienimmo')]
 class BienImmoController extends AbstractController
 {
-    #[Route('/bienimmo', name: 'app_bien_immo_index', methods: ['GET'])]
+    #[Route('/', name: 'app_bien_immo_index', methods: ['GET'])]
     public function index(BienImmoRepository $bienImmoRepository): Response
     {
         // Récupérer tous les biens immobiliers
@@ -30,7 +30,7 @@ class BienImmoController extends AbstractController
         }
         return $this->render('bien_immo/index.html.twig', [
             'bien_immos' => $bienImmoRepository->findAll(),
-            'message_counts' => $messageCounts, 
+            'message_counts' => $messageCounts,
         ]);
     }
 
@@ -83,7 +83,7 @@ class BienImmoController extends AbstractController
     #[Route('/{id}', name: 'app_bien_immo_delete', methods: ['POST'])]
     public function delete(Request $request, BienImmo $bienImmo, EntityManagerInterface $entityManager): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$bienImmo->getId(), $request->getPayload()->getString('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $bienImmo->getId(), $request->getPayload()->getString('_token'))) {
             $entityManager->remove($bienImmo);
             $entityManager->flush();
         }

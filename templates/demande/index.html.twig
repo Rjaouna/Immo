@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Demande index{% endblock %}
+
+{% block body %}
+    <h1>Demande index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Telephone</th>
+                <th>Email</th>
+                <th>Ville</th>
+                <th>VilleAppartement</th>
+                <th>Superficie</th>
+                <th>Chambres</th>
+                <th>SalleBain</th>
+                <th>Balcon</th>
+                <th>Terrasse</th>
+                <th>Ascenseur</th>
+                <th>Piscine</th>
+                <th>Parking</th>
+                <th>Garage</th>
+                <th>Prix</th>
+                <th>Message</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for demande in demandes %}
+            <tr>
+                <td>{{ demande.id }}</td>
+                <td>{{ demande.Nom }}</td>
+                <td>{{ demande.Telephone }}</td>
+                <td>{{ demande.Email }}</td>
+                <td>{{ demande.Ville }}</td>
+                <td>{{ demande.VilleAppartement }}</td>
+                <td>{{ demande.Superficie }}</td>
+                <td>{{ demande.Chambres }}</td>
+                <td>{{ demande.SalleBain }}</td>
+                <td>{{ demande.Balcon ? 'Yes' : 'No' }}</td>
+                <td>{{ demande.Terrasse ? 'Yes' : 'No' }}</td>
+                <td>{{ demande.Ascenseur ? 'Yes' : 'No' }}</td>
+                <td>{{ demande.Piscine ? 'Yes' : 'No' }}</td>
+                <td>{{ demande.Parking ? 'Yes' : 'No' }}</td>
+                <td>{{ demande.Garage ? 'Yes' : 'No' }}</td>
+                <td>{{ demande.Prix }}</td>
+                <td>{{ demande.Message }}</td>
+                <td>
+                    <a href="{{ path('app_demande_show', {'id': demande.id}) }}">show</a>
+                    <a href="{{ path('app_demande_edit', {'id': demande.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="18">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_demande_new') }}">Create new</a>
+{% endblock %}

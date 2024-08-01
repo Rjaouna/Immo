@@ -1,0 +1,86 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Demande{% endblock %}
+
+{% block body %}
+    <h1>Demande</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ demande.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ demande.Nom }}</td>
+            </tr>
+            <tr>
+                <th>Telephone</th>
+                <td>{{ demande.Telephone }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ demande.Email }}</td>
+            </tr>
+            <tr>
+                <th>Ville</th>
+                <td>{{ demande.Ville }}</td>
+            </tr>
+            <tr>
+                <th>VilleAppartement</th>
+                <td>{{ demande.VilleAppartement }}</td>
+            </tr>
+            <tr>
+                <th>Superficie</th>
+                <td>{{ demande.Superficie }}</td>
+            </tr>
+            <tr>
+                <th>Chambres</th>
+                <td>{{ demande.Chambres }}</td>
+            </tr>
+            <tr>
+                <th>SalleBain</th>
+                <td>{{ demande.SalleBain }}</td>
+            </tr>
+            <tr>
+                <th>Balcon</th>
+                <td>{{ demande.Balcon ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>Terrasse</th>
+                <td>{{ demande.Terrasse ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>Ascenseur</th>
+                <td>{{ demande.Ascenseur ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>Piscine</th>
+                <td>{{ demande.Piscine ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>Parking</th>
+                <td>{{ demande.Parking ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>Garage</th>
+                <td>{{ demande.Garage ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>Prix</th>
+                <td>{{ demande.Prix }}</td>
+            </tr>
+            <tr>
+                <th>Message</th>
+                <td>{{ demande.Message }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_demande_index') }}">back to list</a>
+
+    <a href="{{ path('app_demande_edit', {'id': demande.id}) }}">edit</a>
+
+    {{ include('demande/_delete_form.html.twig') }}
+{% endblock %}
