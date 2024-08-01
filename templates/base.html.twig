@@ -25,6 +25,40 @@
             </div>
         {% endfor %}
 
+        <!-- Loader HTML -->
+        <div id="loader" style="display: none;">
+          <div class="spinner"></div>
+        </div>
+
+        <style>
+        #loader {
+          position: fixed;
+          left: 0;
+          top: 0;
+          width: 100%;
+          height: 100%;
+          z-index: 9999;
+          background-color: rgba(255, 255, 255, 0.8);
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+
+        .spinner {
+          border: 16px solid #f3f3f3;
+          border-top: 16px solid #3498db;
+          border-radius: 50%;
+          width: 120px;
+          height: 120px;
+          animation: spin 2s linear infinite;
+        }
+
+        @keyframes spin {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
+        }
+        </style>
+
         {% block body %}{% endblock %}
     </div>
 
@@ -33,6 +67,55 @@
             <p>&copy; {{ "now"|date("Y") }} TrustyHome. Tous droits réservés.</p>
         {% endblock %}
     </footer>
+    
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      var loader = document.getElementById('loader');
+      var minimumLoadingTime = 2000; // 2 secondes
+      var loadingStartedAt = new Date().getTime();
+      var isLoaderVisible = false;
+
+      function showLoader() {
+        loader.style.display = 'flex';
+        isLoaderVisible = true;
+      }
+      
+      function hideLoader() {
+        var currentTime = new Date().getTime();
+        var timeElapsed = currentTime - loadingStartedAt;
+
+        if (timeElapsed >= minimumLoadingTime) {
+          loader.style.display = 'none';
+          isLoaderVisible = false;
+        } else {
+          setTimeout(function() {
+            loader.style.display = 'none';
+            isLoaderVisible = false;
+          }, minimumLoadingTime - timeElapsed);
+        }
+      }
+
+      // Affiche le loader immédiatement et note l'heure de début
+      showLoader();
+      
+      // Cache le loader après que la page est complètement chargée, ou après un délai minimum
+      window.addEventListener('load', hideLoader);
+
+      // Assurez-vous que le loader est visible pendant un minimum de 2 secondes
+      setTimeout(function() {
+        if (isLoaderVisible) {
+          hideLoader();
+        }
+      }, minimumLoadingTime);
+
+      // Afficher le loader lors de la soumission des formulaires
+      document.querySelectorAll('form').forEach(function(form) {
+        form.addEventListener('submit', function() {
+          showLoader();
+        });
+      });
+    });
+    </script>
 
     <script defer src="{{ asset('js/custom.js') }}"></script>
 </body>
